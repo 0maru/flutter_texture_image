@@ -14,7 +14,7 @@ public class SwiftFlutterTextureImagePlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "flutter_texture_image", binaryMessenger: registrar.messenger())
     let instance = SwiftFlutterTextureImagePlugin()
-    FLTTextureImageApiSetup(registrar.messenger(), FLTTextureImageApi())
+    FLTTextureImageApiSetup(registrar.messenger(), TextureImageApi())
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
     
@@ -23,24 +23,20 @@ public class SwiftFlutterTextureImagePlugin: NSObject, FlutterPlugin {
     let arguments = (call.arguments as? Dictionary<String, Any?>)
     switch call.method {
       case "render":
-        let width = arguments["width"] as Double
-        let height = arguments["height"] as Double
-        render(width, height)
+        let args = FLTNetworkImageMessage()
+        let width = arguments["width"] as! Double
+        let height = arguments["height"] as! Double
+        let result = TextureImageApi.render()
+        result(result)
+        return
       case "dispose":
-        dispose()
+        TextureImageApi.dispose()
+        result(nil)
+        return
       default:
         result(nil)
         return
     }
   }
-  
-  // ImageUrl から Texture を生成する
-  private func render(_ widht: Double, _ height: Double) {
-    
-  }
-  
-  // Texture を破棄する
-  private func dispose() {
-    
-  }
+
 }
