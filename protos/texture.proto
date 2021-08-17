@@ -1,7 +1,0 @@
-syntax = 'proto3';
-
-option java_package = "com.toricotokyo.flutter_texture_image";
-
-message Texture {
-  int32 id = 1;
-}

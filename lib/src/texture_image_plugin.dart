@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_texture_image/src/messages.dart';
 import 'package:flutter_texture_image/src/utils.dart';
 
 const String METHOD_NAME = 'flutter_texture_image';
@@ -19,8 +20,13 @@ class TextureImagePlugin {
     required double height,
   }) async {
     try {
-      final base64 = await _imageChannel.invokeMethod('createTextureImage');
-      return null;
+      final api = TextureImageApi();
+      final arg = NetworkImageMessage()
+        ..url = ''
+        ..width = 0.0
+        ..height = 0.0;
+      final result = await api.createTextureImage(arg);
+      return result.textureId;
     } on Exception {
       return null;
     }
@@ -28,7 +34,9 @@ class TextureImagePlugin {
 
   static Future<void> destroy() async {
     try {
-      _imageChannel.invokeMethod('destroy');
+      final api = TextureImageApi();
+      final arg = TextureMessage()..textureId = 1;
+      api.dispose(arg);
       return null;
     } on Exception {
       return null;
