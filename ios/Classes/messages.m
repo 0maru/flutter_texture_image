@@ -71,13 +71,13 @@ void FLTTextureImageApiSetup(id<FlutterBinaryMessenger> binaryMessenger, id<FLTT
   {
     FlutterBasicMessageChannel *channel =
       [FlutterBasicMessageChannel
-        messageChannelWithName:@"dev.flutter.pigeon.TextureImageApi.createTextureImage"
+        messageChannelWithName:@"dev.flutter.pigeon.TextureImageApi.render"
         binaryMessenger:binaryMessenger];
     if (api) {
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         FLTNetworkImageMessage *input = [FLTNetworkImageMessage fromMap:message];
         FlutterError *error;
-        FLTTextureMessage *output = [api createTextureImage:input error:&error];
+        FLTTextureMessage *output = [api render:input error:&error];
         callback(wrapResult([output toMap], error));
       }];
     }

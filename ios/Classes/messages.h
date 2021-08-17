@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @protocol FLTTextureImageApi
--(nullable FLTTextureMessage *)createTextureImage:(FLTNetworkImageMessage*)input error:(FlutterError *_Nullable *_Nonnull)error;
+-(nullable FLTTextureMessage *)render:(FLTNetworkImageMessage*)input error:(FlutterError *_Nullable *_Nonnull)error;
 -(void)dispose:(FLTTextureMessage*)input error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 

@@ -12,7 +12,7 @@ class NetworkImageMessage {
 
 @HostApi()
 abstract class TextureImageApi {
-  TextureMessage createTextureImage(NetworkImageMessage msg);
+  TextureMessage render(NetworkImageMessage msg);
 
   void dispose(TextureMessage msg);
 }
@@ -24,4 +24,5 @@ void configurePigeon(PigeonOptions opts) {
   opts.objcOptions.prefix = 'FLT';
   opts.javaOut = 'android/src/main/java/com/toricotokyo/flutter_texture_image/Messages.java';
   opts.javaOptions.package = 'com.toricotokyo.flutter_texture_image';
+  opts.dartOptions.isNullSafe = true;
 }

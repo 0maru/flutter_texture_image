@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_texture_image/texture_image.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +23,11 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Container(),
+        body: const TextureImage(
+          '',
+          height: 100,
+          width: 100,
+        ),
       ),
     );
   }

@@ -14,7 +14,7 @@ class TextureImagePlugin {
   static late MethodChannel _imageChannel;
   static const MethodChannel channel = MethodChannel(METHOD_NAME);
 
-  static Future<int?> createTextureId(
+  static Future<int?> render(
     String url, {
     required double width,
     required double height,
@@ -25,14 +25,14 @@ class TextureImagePlugin {
         ..url = ''
         ..width = 0.0
         ..height = 0.0;
-      final result = await api.createTextureImage(arg);
+      final result = await api.render(arg);
       return result.textureId;
     } on Exception {
       return null;
     }
   }
 
-  static Future<void> destroy() async {
+  static Future<void> dispose() async {
     try {
       final api = TextureImageApi();
       final arg = TextureMessage()..textureId = 1;

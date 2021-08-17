@@ -68,21 +68,21 @@ public class Messages {
 
   /** Generated interface from Pigeon that represents a handler of messages from Flutter.*/
   public interface TextureImageApi {
-    TextureMessage createTextureImage(NetworkImageMessage arg);
+    TextureMessage render(NetworkImageMessage arg);
     void dispose(TextureMessage arg);
 
     /** Sets up an instance of `TextureImageApi` to handle messages through the `binaryMessenger`. */
     static void setup(BinaryMessenger binaryMessenger, TextureImageApi api) {
       {
         BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.TextureImageApi.createTextureImage", new StandardMessageCodec());
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.TextureImageApi.render", new StandardMessageCodec());
         if (api != null) {
           channel.setMessageHandler((message, reply) -> {
             Map<String, Object> wrapped = new HashMap<>();
             try {
               @SuppressWarnings("ConstantConditions")
               NetworkImageMessage input = NetworkImageMessage.fromMap((Map<String, Object>)message);
-              TextureMessage output = api.createTextureImage(input);
+              TextureMessage output = api.render(input);
               wrapped.put("result", output.toMap());
             }
             catch (Error | RuntimeException exception) {
